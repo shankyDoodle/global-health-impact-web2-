@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>DB Updated</title>
+{% endblock %}
+{% block frontimg %}
+<img id="fore" src="{{ url_for('static',filename='img/about.jpg') }}" />
+{% endblock %}
+{% block content %}
+<div class="contentbox">
+    <p class="redtxt">Choose a data table to update</p>
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="/dbupdate/country" class="dbbutton">Country</a>
+        </div>
+        <div class="col-sm-6">
+            <a href="/dbupdate/company" class="dbbutton">Company</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="/dbupdate/drug" class="dbbutton">Drug</a>
+        </div>
+        <div class="col-sm-6">
+            <a href="/dbupdate/disease" class="dbbutton">Disease</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,345 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Organization</title>
+{% endblock %}
+{% block frontimg %}
+<img id="fore" src="{{ url_for('static',filename='img/about.jpg') }}" />
+{% endblock %}
+{% block content %}
+<div class="currentlocation">
+<p class="pagetitle">About / <a href="/organization" class="titlebold">Organization</a></p>
+</div>
+<div class="row" style="padding: 2px;">
+    <p class="titlecolorred">ORGANIZATION</p>
+</div>
+<div class="row">
+    <div class="col-sm-6" style="padding-left: 0px;">
+        <div class="contentbox">
+            <p class="redtxtabout">ABOUT US:</p>
+            <p class="txtcontent">We are a collaboration of researchers from universities and civil society organizations from around the world, dedicated to measuring pharmaceutical products’ impact on global health to advance access to essential medicines.</p>
+            <br>
+            <p class="txtcontent">To contribute to our project click <a href="mailto:globalhealthimpactproject@gmail.com" class="links">here.</a></p>
+            <p class="txtcontent">For any queries contact <a href="mailto:globalhealthimpactproject@gmail.com" class="links">here.</a></p>
+            <p class="txtcontent">Check us out on YouTube <a href="https://www.youtube.com/channel/UC9sq9bbtyeSlYWboYngXX_Q" class="links">here.</a></p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="bluetxtabout">MORE LINKS:</p>
+            <a href="{{ url_for('static',filename='docs/Code_of_Ethics.pdf') }}" class="links txtcontent"><b>Code of Ethics</b></a><br><br>
+            <a href="{{ url_for('static',filename='docs/Conflict_of_Interests.pdf') }}" class="links txtcontent"><b>Global Health Impact Conflicts of Interest Policy</b></a><br><br>
+            <a href="{{ url_for('static',filename='docs/Executive_Summary.pdf') }}" class="links txtcontent"><b>Executive Summary</b></a><br><br>
+            <a href="{{ url_for('static',filename='docs/GHI Acknowledgments.pdf') }}" class="links txtcontent"><b>Thanks!</b></a><br><br>
+            <a href="http://ghiprojectblog.wixsite.com/ghiproject" class="links txtcontent"><b>GHI Students’ Blog</b></a><br><br>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="contentbox">
+        <p class="redtxtabout">ADVISORY BOARD AND COLLABORATORS:</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Hassoun.jpg') }}" />
+        <p class="nametxt">Nicole Hassoun</p>
+        <p class="smalltxt">Nicole Hassoun heads the Global Health Impact project intended to extend access to medicines to the global poor. Her research interests are in social and political philosophy, global justice, global health, and applied ethics. From 2006-2012 she was an assistant professor in philosophy at Carnegie Mellon University, affiliated with Carnegie Mellon's Program on International Relations and the University of Pittsburgh’s Center for Bioethics and Health Law. In 2009-2010 she held a postdoctoral position at Stanford University and visited at the United Nation’s World Institute for Development Economics Research. She has also been a visiting scholar at the Center for Poverty Research in Austria and the Center for Advanced Studies in Frankfurt. Her book Globalization and Global Justice: Shrinking Distance, Expanding Obligations was recently published with Cambridge University Press.</p>
+    </div>
+    </div>
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Gostin.jpg') }}" />
+        <p class="nametxt">Lawrence Gostin</p>
+        <p class="smalltxt">Lawrence O. Gostin is University Professor, Founding O’Neill Chair in Global Health Law, and Director of the O’Neill Institute for National and Global Health Law at Georgetown University. Prof. Gostin holds international professorial appointments at Oxford University, University of Witwatersrand, (South Africa), and Melbourne University. He is also the Director of the World Health Organization Collaborating Center on Public Health Law & Human Rights.</p>
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Lee.jpg') }}" />
+        <p class="nametxt">Bruce Y. Lee</p>
+        <p class="smalltxt">Dr. Lee is the Director of Operations Research at the International Vaccine Access Center at John Hopkins. Previously, he was Associate Professor at the University of Pittsburgh, where he founded and directs the Public Health Computational and Operations Research group which specializes in designing economic and operational computer models that help decision makers tackle infectious diseases of global importance.</p>
+    </div>
+    </div>
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/meredith.png') }}" />
+        <p class="nametxt">Gloria Meredith</p>
+        <p class="smalltxt">Dean Meredith is a classical neuropharmacologist with more than 160 publications in top journals such as Nature. She has served on National Institute of Health study sections and is affiliated with many professional societies such the American Society of Health System Pharmacists.</p>
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Pogge.jpg') }}" />
+        <p class="nametxt">Thomas Pogge</p>
+        <p class="smalltxt">Pogge heads the Global Justice Program at Yale's MacMillan Center. Work there currently focuses on four projects: (1) a team effort toward developing a complement to the pharmaceutical patent regime that would improve access to advanced medicines worldwide (Health Impact Fund); (2) a team effort toward developing new indexes for tracking poverty and gender disparities worldwide; (3) a team effort toward finding ways of reducing the enormous losses poor populations suffer through illicit financial outflows due to corruption as well as tax evasion and tax avoidance; and (4) a team effort toward mobilizing the creativity and expertise of academics in support of effective poverty reduction through promoting stronger collaboration, effective public outreach and thoughtful policy intervention (Academics Stand Against Poverty).</p>
+    </div>
+    </div>
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Dhai.jpg') }}" />
+        <p class="nametxt">Ames Dhai</p>
+        <p class="smalltxt">Professor Dhai is the Director of the Steve Biko Centre for Bioethics at the Faculty of Health Sciences, University of the Witwatersrand. The Centre is a Co-operating Centre of the World Medical Association and the South African Unit of the UNESCO International Network in Bioethics. Professor Dhai is the President of the South African Medical Association and a member of the WHO’s African Advisory Committee for Health Research and Development.</p>
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Hollis.jpg') }}" />
+        <p class="nametxt">Aidan Hollis</p>
+        <p class="smalltxt">Aidan Hollis was educated at Cambridge University and the University of Toronto, where he obtained a PhD in Economics. His research is broadly in the area of industrial organization, and is particularly focused on competition and innovation issues in pharmaceutical markets. Prof. Hollis is also Vice-President and a Director of Incentives for Global Health, a non-profit whose chief objective is the promotion and development of the Health Impact Fund. For the academic year 2003-4 he was appointed TD MacDonald Chair of Industrial Economics at the Competition Bureau, Industry Canada.</p>
+    </div>
+    </div>
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/sodhi.jpg') }}" />
+        <p class="nametxt">Geeta Sodhi</p>
+        <p class="smalltxt">Dr Sodhi is a pediatrician and founded the Swaasthya Trust, a nonprofit organization that focused on women’s and children’s health issues in Delhi, Maharashtra, Bihar, Jharkhand and Rajasthan India (from 1994/5 – 2015). Supported by the World Health Organization, Geneva, she lead the State level Reproductive Health Strategic Assessment in Rajasthan. She has also worked as a lead partner on PATH India's Sure Start initiative, lead a Ford Foundation supported initiative to provide technical assistance to the Government of Rajasthan, and through UNFPA supported technical assistance missions provided technical support to Government of Maldives. She has been advising/ providing technical support to organizations such as the Global Health Strategies, World Health Partners and Plan India.</p>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+  <div class="contentbox">
+      <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Margai.jpg') }}" />
+      <p class="nametxt">In Memoriam<br>Florence Margai</p>
+      <p class="smalltxt">Dr. Margai's research interests entail the use of geospatial technologies in the mapping and assessment of environmental hazards and negative health outcomes particularly within vulnerable communities including marginalized groups, women, the elderly, and children. Her past and current research activities include the study of food insecurity and childhood health outcomes, malaria morbidity and treatment seeking approaches in West Africa, toxic exposures such as pediatric lead poisoning and adverse health consequences. She has worked with several nonprofit organizations in the U.S. and Africa to assist in the geographic targeting of vulnerable population groups for disease intervention and health promotional campaigns, sustainability and capacity development initiatives.</p>
+  </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="contentbox">
+        <p class="redtxtabout">GLOBAL <br>
+                                HEALTH IMPACT <br>
+                                RESEARCH TEAM:
+        </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Horton.jpg') }}" />
+        <p class="nametxt" style="">Dylan Horton</p>
+        <p class="smalltxt">A junior biomedical engineering major, Dylan was interested in joining GHI for the research opportunity if offered. Joining GHI allowed Dylan to hone his research skills and develop his Microsoft Excel skills, while working on a project that shared the same core values he did.</p>
+    </div>
+    </div>
+    <div class="col-sm-6">
+    <div class="contentbox">
+        <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Jung.jpg') }}" />
+        <p class="nametxt">Karen Jung</p>
+        <!--<p class="posit">Systematic Review Team</p>-->
+        <p class="smalltxt">Karen, a sophomore biochemistry major, joined GHI to further understand how pharmaceutical drugs can help people in need of them. As part of the systematic review team, Karen gets a first hand look at the varying effectiveness of these drugs through evaluating them. </p>
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Dickey.jpg') }}" />
+            <p class="nametxt">SuXian Dickey</p>
+            <!--<p class="posit">Data Analytics Team</p>-->
+            <p class="smalltxt">SuXian, a junior majoring in economics is a relative newcomer to GHI having only one semester under her belt, but she believes the value of her work,in promoting GHI’s brand and checking work to ensure the quality and correctness of GHI’s work through creating charts and graphs.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Hoda.jpg') }}" />
+            <p class="nametxt">Mahvish Hoda</p>
+            <!--<p class="posit">Systematic Review Team/Social Media Team</p>-->
+            <p class="smalltxt">Mahvish, now a graduate student of Binghamton chose to study Integrative Neuroscience as an undergraduate, she has a strong passion in human rights and sees herself working as a PA in the future. As part of the systematic review team for over a year, she works with data on many different diseases, as well as posting to the GHI Facebook page.</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Cialfi.jpg') }}" />
+            <p class="nametxt">Kevin Cialfi</p>
+            <!--<p class="posit">Systematic Review Team</p>-->
+            <p class="smalltxt">Having been on the team a full semester, Kevin fully enjoys inputting data and completing systematic literature searches. He has always wanted to get into global medicine, and expanding his research skills through working with GHI has both benefitted him and GHI greatly. </p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Espinoza.jpg') }}" />
+            <p class="nametxt">Magdalena Espinoza</p>
+            <!--<p class="posit">Systematic Review and Data Insertion</p>-->
+            <p class="smalltxt">Why did Magdalena join GHI? "Not only did I want to get involved with research, but I valued GHI's goal to increase the availability of effective drugs worldwide," she says. "I believe that GHI could make a difference in improving health throughout the world and I was very much interested in being a part of that."</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Lin.jpg') }}" />
+            <p class="nametxt">Moses Lin</p>
+            <!--<p class="posit">Social Media</p>-->
+            <p class="smalltxt">Moses has worked with GHI for 1 semester and currently creates PowerPoint presentations as well as social media projects. His main motivator is working with others in health towards a common goal. </p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Jiang.jpg') }}" />
+            <p class="nametxt">Agnes Jiang</p>
+            <!--<p class="posit">Data Analysis Team</p>-->
+            <p class="txtcontent">Agnes helps build statistical models in Excel to calculate impact by country, drug, and company. She has always enjoyed data analysis, and global health has allowed to her to apply her skills in a field in which she’s interested in.</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Borsh.jpg') }}" />
+            <p class="nametxt">Chatham Borsh</p>
+            <!--<p class="posit">Head of Excel Modeling Teams</p>-->
+            <p class="smalltxt">Chatham has been with GHI for three semesters now, and this experience has given him a unique role in the project. His main duties involve training new members through everything from explaining models, answering questions, assigning tasks, and giving presentations. He also approves and discusses changes to models and provides some assistance with paper writing and researching.</p>
+        </div>
+    </div>
+     <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Li.jpg') }}" />
+            <p class="nametxt">Haoxin Li</p>
+            <!--<p class="posit">Excel, Data Analysis, and Modeling Team</p>-->
+            <p class="smalltxt">Haoxin Li has been with GHI for two semesters, and he's got a lot on his plate. Not only does he check algorithms for function and formula of drug models, but he also inputs and modifies new efficacy data and formulas as they arise. Haoxin joined GHI because he was "willing to do charity and help people. I find that GHI is the program that I can learn to use data to let more people know the situation for diseases based on my knowledge and ability."
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Nagasawa.jpg') }}" />
+            <p class="nametxt">Mary Nagasawa</p>
+            <!--<p class="posit">Patent Research</p>-->
+            <p class="smalltxt">Mary, a sophomore who has been with GHI for 3 semesters, joined works on patent research which assigns patents for all drugs found on the model for the GHI Index in order to produce a system of accountability for pharmaceutical companies.  She is proud to be a part of an initiative that utilizes a fascinating and essential combination of ethics and science in order to combat one of the most serious issues the world faces today.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Tournemire.jpg') }}" />
+            <p class="nametxt">Gregoire de Tournemire</p>
+            <!--<p class="posit">Social Media Team</p>-->
+            <p class="smalltxt">Greg, a sophomore who has been with GHI for 2 semesters, posting and managing GHI's social media accounts to ensure we have a strong, always updating and improving online presence. He has always been interested in health, particularly epidemiology, and when I saw a initiative working on grading pharmaceutical companies on the effectiveness of their medicine, he knew this was an organization that he could work in that would motivate me to work towards a greater good.</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Morris.jpg') }}" />
+            <p class="nametxt">Francis Morris</p>
+            <!--<p class="posit">Grants, Excel, and Modeling</p>-->
+            <p class="smalltxt">Francis can truly be considered well-rounded in her work in GHI; since she joined in June, she has been exploring funding opportunities, helping create grants, creating and compiling references, and inputting data into model spreadsheets. Why did she join? "To make a difference in global health by supporting a project working towards increasing global health equity," she says.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Japko.jpg') }}" />
+            <p class="nametxt">Dillon Japko</p>
+            <!--<p class="posit">Web Development</p>-->
+            <p class="smalltxt">Dillon, a senior majoring in Biomedical Engineering, and a member of GHI for 2 semesters,  is currently fully redesigning GHI’s website with a Python API on the backend. He joined the GHI team because he sees tremendous value in our endeavors. It gives him an opportunity to use his passion for data and web-development to potentially improve big pharma's impact around the world. He can't think of a more satisfying way to be spending his last semester at Binghamton!</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Kanyuru.jpg') }}" />
+            <p class="nametxt">Vitalis Kanyuru</p>
+            <!--<p class="posit">Patent Research/Social Media</p>-->
+            <p class="smalltxt">Vitalis is currently part of GHI's patent and social media teams. He’s worked on patent research that involved identifying patent holders of drugs included in the Global Health Index. He’s also helped prepare drug and company reports that will soon be part of the website. For social media he’s managed the Facebook and Twitter pages, helped brainstorm new campaigns, and prepared the poster presentation for the Research Days events. He felt compelled to join GHI after reading its mission. Extending access to essential medicines is ultimately about saving lives that are lost unnecessarily, and and wanted to take part in this great change making endeavor.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Baumeister.jpg') }}" />
+            <p class="nametxt">Robin Baumeister</p>
+            <!--<p class="posit">Patent Researcher/Social Media</p>-->
+            <p class="smalltxt">Robin creates social media campaigns and infographics, helps run our group's Twitter and Instagram accounts, and writes blog posts; She also researches and forms write-ups for relevant drugs and pharmaceutical companies. She joined GHI because she intends to pursue a career in public health, and saw this as the perfect opportunity to get involved in the field. She is well aware of the inequity of medical distribution to neglected countries and diseases, and admires the project's mission to incentivize in order to minimize this problem.</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Coyle.jpg') }}" />
+            <p class="nametxt">Michael Coyle</p>
+            <!--<p class="posit">Systematic Review Team</p>-->
+            <p class="smalltxt">Michael has been working with GHI for a full semester now, and is currently writing a paper on the results of the systematic review on HIV. For him, GHI is an excellent way to help a good cause from his dorm room. The work he does every day helps further the cause of improving access to life-saving medicines. Sometimes the work is tolling, but he says “When I remind myself that my work will eventually save lives, it becomes worthwhile.”</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Sheetal.jpg') }}" />
+            <p class="nametxt">Sheetal Patel</p>
+            <!--<p class="posit">Systematic Review Team</p>-->
+            <p class="smalltxt">Sheetal Patel is an undergraduate Industrial Labor Relations major and Economics minor at Cornell University. Her interests are focused in economic development and resource management. She is also interested in sustainability and global health issues in developing countries</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Angelina.jpg') }}" />
+            <p class="nametxt">Angelina Sung</p>
+            <!--<p class="posit">Systematic Review Team</p>-->
+            <p class="smalltxt">Angelina Sung is an undergraduate psychology and philosophy double major at Carnegie Mellon University. Her research interests include applying positive/humanistic psychology to well-being and health as well as existential psychotherapy. She is working with the Global Health Impact project since 2010.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Yomei.jpg') }}" />
+            <p class="nametxt">Yomei Shaw</p>
+            <!--<p class="posit">Systematic Review Team</p>-->
+            <p class="smalltxt">Yomei Shaw is a doctoral candidate pursuing a degree in Health Services Research in the Department of Health Policy and Management at the University of Pittsburgh Graduate School of Public Health.</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Adriana.jpg') }}" />
+            <p class="nametxt">Adriana Klimkiewiczg</p>
+            <!--<p class="posit">Systematic Review Team</p>-->
+            <p class="smalltxt">Adriana Klimkiewicz graduated from Binghamton University with degree in Economics. While a student there, she participated in the Global Health Impact project with the goal of extending healthcare globally. She now works in finance in New York City but hopes that in the future she can continue to contribute to the ongoing efforts in improving the quality of care in poverty stricken countries.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Tyler.jpg') }}" />
+            <p class="nametxt">Tyler West</p>
+            <!--<p class="posit">Systematic Review Team</p>-->
+            <p class="smalltxt">Tyler Ester is a Junior in Harpur College at Binghamton University majoring in Philosophy Politics and Law with a minor in Biology.</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Saptarshi.jpg') }}" />
+            <p class="nametxt">Saptarshi Ghose</p>
+            <!--<p class="posit">Systematic Review Team</p>-->
+            <p class="smalltxt">Saptarshi Ghose graduated from Carnegie Mellon University with degrees in Business Administration and Ethics, History, and Public Policy.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <img width="80px" style="float:left;" class="headshotimg" src="{{ url_for('static',filename='img/board/Michael.jpg') }}" />
+            <p class="nametxt">Michael Agulnick</p>
+            <!--<p class="posit">Systematic Review Team</p>-->
+            <p class="smalltxt">Michael Agulnick is a neuroscience major attending Binghamton University interested in the fields of medicine and biology. He is from Long Island, New York and is Ukrainian.</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

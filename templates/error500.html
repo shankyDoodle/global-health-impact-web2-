@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}
+{% endblock %}
+
+{% block frontimg %}
+<script>
+function myFunction() {
+  var pathArray = location.pathname.split( '/' );
+  var str = pathArray[2];
+  console.log(str);
+  var img_url = '/static/img/' + str + '.jpg';
+  return img_url;
+}
+</script>
+
+<img id="fore" src="/static/img/drug.jpg" onload="this.onload=null; this.src=myFunction();" />
+{% endblock %}
+
+{% block content %}
+<div class="row" id="scrollhere" onload="func1()">
+    <div class="col-sm-6">
+          <img  src="/static/img/error500.png" />
+    </div>
+    <div class="col-sm-6">
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+    </div>
+    <div class="col-sm-6">
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+  </div>
+</div>
+{% endblock %}

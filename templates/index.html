@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Global Health Impact</title>
+{% endblock %}
+
+{% block frontimg %}
+<img id="back" src="static/img/backgroundimg.jpg" />
+
+<div class="col-sm-4index">
+    <span class="cap">An Initiative to</span> <br>
+    <span class="cap2"><b>EVALUATE</b> & <b>COMPARE</b></span> <br>
+    <span class="cap">Medicines' Global Health Impact</span>
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="redtxt">WHAT DO WE DO?</p><br>
+            <p class="txtcontent">
+                Imagine a world where people everywhere have access to the life-saving drugs they need to fight diseases like tuberculosis,
+                malaria, and HIV/AIDS. The Global Health Impact Index – supported by a collaboration of researchers from
+                universities and civil society organizations around the world – opens the door to positive change by
+                measuring pharmaceutical products’ impact on global health.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="bluetxt">THE INDEXES:</p><br>
+            <div class="icons">
+                <a class="iconbox" href="/index/country/2010/all">
+                    <img src="static/img/index-graphics-05.png" class="iconimg" />
+                    <p class="iconlabel">country</p>
+                </a>
+                <a class="iconbox" href="/index/company/patent/2010/all">
+                    <img src="static/img/index-graphics-06.png" class="iconimg" />
+                    <p class="iconlabel">company</p>
+                </a><br><br><br>
+                <a class="iconbox" href="/index/disease">
+                    <img src="static/img/index-graphics-04.png" class="iconimg" />
+                    <p class="iconlabel">disease</p>
+                </a>
+                <a class="iconbox" href="/index/drug">
+                    <img src="static/img/index-graphics-07.png" class="iconimg" />
+                    <p class="iconlabel">drugs</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="redtxt">LEARN MORE:</p><br>
+            <p class="txtcontent"><b>Check out</b> this video from Binghamton University for a brief presentation on the Global Health Impact project. Professor Nicole Hassoun introduces the Index, some possible uses for it, and explains the insight behind it.</p>
+            <br>
+          <div class='youtube_codegena' id='HmZPHqz7xUQ' data-params='?&theme=dark&autoplay=1&autohide=2' src='./static/img/videothumbnail.png'style='width:100%; height:222px;'></div><script src='https://rawgit.com/shaneapen/Async-Youtube-Player/master/async_youtube_player.js'></script><div style='font-size: 0.8em'; allowfullscreen = ""><a href='http://codegena.com/generator/Youtube-Embed-Code-Generator.html'></a></div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="bluetxt">INTRO TO THE INDEX:</p><br>
+            <p class="txtcontent"><b>Check out</b> this presentation for an introduction to the Indexes. Here you can see some of the data that goes into the model. For more information check out our <em>
+                <a href="/resources" class="links"> Resources</a>
+                <!--, <a href="/reports" class="clickableLabel" >Reports</a>-->
+                 and <a href="/methodology" class="links"> Methodology.</a></em></p>
+            <br>
+            <iframe id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" width=100% height=222 frameborder="0"  src="https://prezi.com/embed/r9kwud5nhsj8/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE1lNjhCRUpSbVVNaldpOExIVTNYS1YxcHFaaHFGQ1lSdkdOM01xRUZFOD0&amp;landing_sign=t_-zvhLxW_pfDKaw-xoUzy64VD0DwVqSteTWZ3Jtak8"></iframe>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+    #fadeload {
+    display: none;
+    position:absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #ababab;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .70;
+    filter: alpha(opacity=80);
+}
+
+#modalload {
+    display: none;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: 150px;
+    height: 150px;
+
+
+
+
+
+    z-index: 1002;
+    text-align:center;
+
+}
+
+.updating{
+    color:white;
+    font-size: 20px;
+    text-shadow: 0 4px 8px 0 rgba(0,0,0,0.9), 0 3px 10px 0 rgba(0,0,0,0.9);
+}
+
+.btnaccount{
+    background-color: white; /* Green */
+    border: 2px solid #0083C4;
+    color: blue;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 18px;
+    color: #000000;
+    font-family: 'Nunito', sans-serif;
+    display: inline-block;
+
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 18px 0px 18px 0px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+}
+
+.btnaccount:hover{
+    color:white;
+    background-color: #0083C4;
+    text-decoration:none;
+}
+
+
+#loader {
+    width: 140px;
+    height: 140px;
+}

@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Account Management</title>
+<head>
+        <link href="{{ url_for('static',filename='styleaccount.css') }}" rel="stylesheet">
+</head>
+{% endblock %}
+
+{% block frontimg %}
+<img id="fore" src="static/img/about.jpg" />
+{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+
+    function openModal() {
+        document.getElementById('modalload').style.display = 'block';
+        document.getElementById('fadeload').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('modalload').style.display = 'none';
+    document.getElementById('fadeload').style.display = 'none';
+}
+
+function loadAjax(operation) {
+
+
+    document.body.innerHTML += "<div id='fadeload'></div><div id='modalload'><p class='updating'>Updating Database .. </p><img id='loader' src='{{ url_for('static',filename='img/loading2.gif') }}'/></div>";
+
+    openModal();
+    var xhr = false;
+    if (window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+    }
+    else {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (xhr) {
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                closeModal();
+                document.write(xhr.response);
+            }
+        }
+        xhr.open("GET", operation, true);
+        xhr.send(null);
+    }
+}
+
+</script>
+
+<div class="currentlocation">
+<p class="pagetitle">Info / <a href="/account" class="titlebold">Account</a></p>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+            <div class="contentbox">
+            <p class="titlecolorred">Account</p>
+            </div>
+        </div>
+</div>
+<div class="row">
+            <div class="contentbox" >
+            <p class="txtcontent">To update the website with the ORS spreadsheet click on <span style="color:rgba(255,59,59);"> "UPDATE" </span>
+            and if you face any technical issue you can click on <span style="color: rgba(0, 131, 196);">"REVERT"</span>
+            and contact <span style="color: rgba(0, 131, 196);"> ghiprojectmanager@gmail.com </span> </p>
+            </div>
+</div>
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="redtxt">UPDATE:</p>
+			<a class="btnaccount" href="javascript: void(0);loadAjax('/accountS');">Update</a>
+            </div>
+	</div>
+
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="bluetxt">REVERT:</p>
+			<a class="btnaccount" href="javascript: void(0);loadAjax('/revert')">Revert</a>
+            </div>
+    </div>
+</div>
+{% endblock %}

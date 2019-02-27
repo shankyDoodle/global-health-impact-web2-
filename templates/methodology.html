@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Methodology</title>
+{% endblock %}
+
+{% block frontimg %}
+<img id="fore" src="static/img/about.jpg"/>
+{% endblock %}
+
+{% block content %}
+<div class="currentlocation">
+<p class="pagetitle">About / <a href="/methodology" class="titlebold">Methodology</a></p>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+            <div class="contentbox">
+            <p class="titlecolorred">METHODOLOGY</p>
+            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="redtxtabout">DRUG INDEX: </p>
+            <p class="txtcontent">To evaluate the impact of the major drugs for malaria, tuberculosis and HIV/AIDS, we consider 1) the need for the drugs, 2) the drugs’ effectiveness, and 3) access to the drug. We measure the need for the drugs in Disability Adjusted Life-Years (DALYs) lost to the diseases they treat. We use efficacy data from clinical trials when data on actual effectiveness is unknown. We measure access by the number of people who need treatment who are receiving it.</p>
+        </div>
+        <div class="contentbox">
+            <p class="redtxtabout">DISEASE INDEX:</p>
+            <p class="txtcontent">The Disease Index sums the global impact of the drugs for each disease. It displays the relative proportion of DALYs averted by disease. It is also possible to see the breakdown of some information about need, access to, and efficacy of key drugs for each disease.</p>
+        </div>
+        <div class="contentbox">
+            <p class="redtxtabout">GLOBAL HEALTH IMPACT INDEX:</p>
+            <p class="txtcontent">This report explains in detail how the Company Index is calculated. In doing so, it gives examples of how drug scores are calculated.</p>
+            <table id="reporttab">
+                <tr>
+                    <td id="paperthumb">
+                        <a href="http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0141374&type=printable" target="_blank">
+                            <img src="static/img/companyreport.jpg" width="100%"/>
+                        </a>
+                    </td>
+                    <td>
+                        <p class="abtlabel">Click on the paper to read more!</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="contentbox">
+            <p class="redtxtabout">GLOBAL HEALTH IMPACT COUNTRY INDEX:</p>
+            <p class="txtcontent">This paper provides a brief introduction to the Global Health Impact country index.</p>
+            <table id="reporttab">
+                <tr>
+                    <td id="paperthumb">
+                        <a href="http://global-health-impact.org/src/Country%20Paper%20072214.pdf" target="_blank">
+                            <img src="static/img/companyreport.jpg" width="100%"/>
+                        </a>
+
+                    </td>
+                    <td>
+                        <p class="abtlabel">Click on the paper to read more!</p>
+                     </td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="bluetxtabout">COUNTRY INDEX:</p>
+            <p class="txtcontent">The Country Index sums all drugs’ impacts within the country. So, for instance, if two drugs are used in some country and the first averts 1 million DALYs and the second averts 2 million, the country score would be 3 million DALYs averted. We also break down the scores so that it is possible to see the DALYs averted by drugs for malaria, TB, and HIV/AIDS respectively.</p>
+        </div>
+        <div class="contentbox">
+            <p class="bluetxtabout">COMPANY INDEX:</p>
+            <p class="txtcontent">The Company Index sums the impact of all of a company’s drugs. So, for instance, if one company makes two drugs that avert 3 and 6 million DALYs respectively, the Company Score would be 9 million DALYs averted. We also break down the scores so that it is possible to see the DALYs averted by company for malaria, TB, and HIV/AIDS respectively.</p>
+        </div>
+        <div class="contentbox">
+            <p class="bluetxtabout">TECHNICAL GUIDE TO THE INDEX:</p>
+            <p class="txtcontent">This guidebook includes a data dictionary for the Company Index database, reviews the assumptions underlying model construction, and explains the score calculations and goes through an example.</p><br>
+            <table id="reporttab">
+                <tr>
+                    <td id="paperthumb">
+                        <a href="http://global-health-impact.org/src/over%20all%20rating%20spread%20sheet.pdf" target="_blank"><img src="static/img/companyreport.jpg" width="75%"/></a>
+                    </td>
+                    <td>
+                        <p class="abtlabel">Click on the paper to read more!</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="contentbox">
+            <p class="bluetxtabout">DOCUMENTATION:</p>
+            <table id="reporttab">
+                <tr>
+                    <td id="paperthumb">
+                      <div><embed id="malaria_swf" src="static/docs/malaria presentation.swf" type="application/x-shockwave-flash" allowscriptaccess="true" class="pptborder1"></div>
+                    </td>
+                     <td>
+                         <p class="ppttext"> <a href="static/docs/Malaria Presentation.pptx"  style="color: #404040;"  target="_blank">Malaria Drugs Spreadsheet </a></p>
+                    </td>
+                </tr>
+            </table>
+             <table id="reporttab"  class="marginbt13">
+                <tr>
+                    <td id="paperthumb">
+                      <div><embed id="tb_drug_swf" src="static/docs/tb powerpoint.swf" type="application/x-shockwave-flash" allowscriptaccess="true" class="pptborder2"></div>
+                    </td>
+                     <td>
+                         <p class="ppttext"> <a href="static/docs/TB Presentation.pptx"  style="color: #404040;"  target="_blank">TB Drugs PowerPoint</a></p>
+                    </td>
+                </tr>
+            </table>
+             <table id="reporttab"  class="marginbt13">
+                <tr>
+                    <td id="paperthumb">
+                      <div><embed id="hiv_drug_swf" src="static/docs/hiv powerpoint.swf" type="application/x-shockwave-flash" allowscriptaccess="true" class="pptborder3"></div>
+                    </td>
+                     <td>
+                         <p class="ppttext"> <a href="static/docs/HIV Presentation.pptx"  style="color: #404040;"  target="_blank">HIV Drugs Spreadsheet </a></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

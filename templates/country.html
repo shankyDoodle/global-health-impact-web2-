@@ -1,0 +1,337 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Country</title>
+<script src="{{ url_for('static',filename='js/country.js') }}"></script>
+{% endblock %}
+
+{% block frontimg %}
+<img id="fore" src="/static/img/country - Copy.png" />
+
+
+{% endblock %}
+
+{% block content %}
+<div class="currentlocation">
+<p class="pagetitle">Index / <a href="/index/country/2010/all" class="pagetitle">Country</a> / <a href="/index/country/{{ speclocate.0 }}/All" class="pagetitle">{{ speclocate.0 }}</a> / <a href="/index/country/{{ speclocate.0 }}/{{ speclocate.2 }}" class="titlebold">{{ speclocate.1 }}</a></p>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    var sorted = {{sortedval |safe}};
+    console.log("helloodofkopdfdf");
+    console.log(sorted);
+
+    google.charts.load('upcoming', {'packages':['geochart','corechart'], mapsApiKey: 'AIzaSyBbUek5yR_dn5xjXcP-dyvTJ6BpCahdhuE'});
+    google.charts.setOnLoadCallback(drawMap);
+    var forBarData = {{barlist |safe}};
+    function drawMap() {
+        var data = google.visualization.arrayToDataTable(
+           {{ mapdata |safe }}
+        );
+        console.log(data);
+        data.sort({column: 1, desc: true});
+        var mapoptions = {};
+        mapoptions['dataMode'] = 'regions';
+        mapoptions['colors'] = ['#548A9B', '#C0E188', '#EE8D7D'];
+        mapoptions['width'] = 450;
+        mapoptions['backgroundColor'] = '#ffffff';
+
+
+        var mapcontainer = document.getElementById('regions_div');
+
+        var geomap = new google.visualization.GeoChart(mapcontainer);
+
+        geomap.draw(data, mapoptions);
+
+
+        function myClickHandler(){
+            var selection = geomap.getSelection();
+            var message = '';
+            var item = selection[0];
+            {% if isall == 1 %}
+            countryclickAll(item.row);
+            {% endif %}
+            {% if isall == 0 %}
+                countryClick(item.row);
+            {% endif %}
+            // countryclick(item.row);
+        }
+
+        google.visualization.events.addListener(geomap, 'select', myClickHandler);
+
+        {% if isall == 1 %}
+         row = sorted[0];
+         var bardata = new google.visualization.DataTable();
+         bardata.addColumn('string','Country');
+         bardata.addColumn('number','Score');
+         bardata.addColumn({type: 'string', role: 'style'});
+         bardata.addRow(['TB',row[2],"color: #FFB31C"]);
+         bardata.addRow(['Malaria',row[3],"color: #0083CA"]);
+         bardata.addRow(['HIV',row[4],"color: #EF3E2E"]);
+         bardata.addRow(['Schistosomiasis',row[8],"color: #003452"]);
+        // // bardata.addRow(['Onchocerciasis',row[6],"color: #86AAB9"]);
+         bardata.addRow(['LF',row[9],"color: #CAEEFD"]);
+         bardata.addRow(['Hookworm',row[6],"color: #546675"]);
+         bardata.addRow(['Roundworm',row[5],"color: #8A5575"]);
+         bardata.addRow(['Whipworm',row[7],"color: #305516"]);
+         var baroptions = {
+             legend:'none',
+             top: 0,
+             width: 400,
+             animation:{
+                 startup: true,
+                 duration: 1000,
+                 easing: 'out',
+             }
+         };
+
+         var barchart = new google.visualization.BarChart(document.getElementById('horbars'));
+         barchart.draw(bardata,baroptions);
+         document.getElementById('cntname').innerHTML = row[0];
+		 {% endif %}
+		 {% if isall == 0 %}
+		    row = forBarData[0];
+            console.log(row);
+            // alert("{{color}}");
+            var disColor = "color:"+"{{color}}";
+            var bardata = new google.visualization.DataTable();
+            bardata.addColumn('string','Country');
+            bardata.addColumn('number','Score');
+            bardata.addColumn({type: 'string', role: 'style'});
+            bardata.addRow(["{{ disease }}",row[1],disColor]);
+            var baroptions = {
+                legend:'none',
+                top: 0,
+                width: 400,
+                hAxis: {
+                    viewWindow: {
+                        min: 0,
+                        max: 1.5*row[1]
+                    }
+                },
+                animation:{
+                    startup: true,
+                    duration: 1000,
+                    easing: 'out',
+                }
+            };
+            // alert(bardata);
+            // alert(baroptions);
+
+            var barchart = new google.visualization.BarChart(document.getElementById('horbars'));
+            barchart.draw(bardata,baroptions);
+            // console.log(row[0]);
+            document.getElementById('cntname').innerHTML = row[0];
+		 {% endif %}
+    };
+
+    {% if isall == 1 %}
+        function countryclickAll(rownum) {
+            console.log("Inside countryclick");
+            console.log("rownum"+rownum);
+            row = sorted[rownum];
+            console.log(row);
+            var bardata = new google.visualization.DataTable();
+            bardata.addColumn('string','Country');
+            bardata.addColumn('number','Score');
+            bardata.addColumn({type: 'string', role: 'style'});
+            bardata.addRow(['TB',row[2],"color: #FFB31C"]);
+            bardata.addRow(['Malaria',row[3],"color: #0083CA"]);
+            bardata.addRow(['HIV',row[4],"color: #EF3E2E"]);
+            bardata.addRow(['Schistosomiasis',row[8],"color: #003452"]);
+            // bardata.addRow(['Onchocerciasis',row[6],"color: #86AAB9"]);
+            bardata.addRow(['LF',row[9],"color: #CAEEFD"]);
+            bardata.addRow(['Hookworm',row[6],"color: #546675"]);
+            bardata.addRow(['Roundworm',row[5],"color: #8A5575"]);
+            bardata.addRow(['Whipworm',row[7],"color: #305516"]);
+            var baroptions = {
+                legend:'none',
+                top: 0,
+                width: 400,
+                animation:{
+                    startup: true,
+                    duration: 1000,
+                    easing: 'out',
+                }
+            };
+            var barchart = new google.visualization.BarChart(document.getElementById('horbars'));
+            barchart.draw(bardata,baroptions);
+            console.log(row[0]);
+            document.getElementById('cntname').innerHTML = row[0];
+        };
+    {% endif %}
+    {% if isall == 0 %}
+        function countryClick(rownum){
+            // alert("Inside"+row);
+            row = forBarData[rownum];
+            console.log(row);
+            // alert("{{color}}");
+            var disColor = "color:"+"{{color}}";
+            var bardata = new google.visualization.DataTable();
+            bardata.addColumn('string','Country');
+            bardata.addColumn('number','Score');
+            bardata.addColumn({type: 'string', role: 'style'});
+            bardata.addRow(["{{ disease }}",row[1],disColor]);
+            var baroptions = {
+                legend:'none',
+                top: 0,
+                width: 400,
+                hAxis: {
+                    viewWindow: {
+                        min: 0,
+                        max: 1.5*row[1]
+                    }
+                },
+                animation:{
+                    startup: true,
+                    duration: 1000,
+                    easing: 'out',
+                }
+            };
+            // alert(bardata);
+            // alert(baroptions);
+
+            var barchart = new google.visualization.BarChart(document.getElementById('horbars'));
+            barchart.draw(bardata,baroptions);
+            // console.log(row[0]);
+            document.getElementById('cntname').innerHTML = row[0];
+        };
+    {% endif %}
+
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#scrollhere").animate("top:0px;");
+    });
+    $( window ).on( "load", function() {
+       {% if isall == 1 %}
+        countryclickAll(0);
+        {% endif %}
+        {% if isall == 0 %}
+        countryClick(0);
+        {% endif %}
+        // alert("heererere");
+    });
+
+</script>
+
+<div class="row" id="scrollhere" onload="func1()">
+    <div class="col-sm-6">
+        <div class="contentbox">
+        <p class="titlecolorredlower">COUNTRY: <span class="titlecolorred">{{ name }}</span></p>
+        <p class="txtcontent">The Global Health Impact Project examines how diseases of poverty, as well as the
+                medicines available to those who are afflicted, affect health around the world. These conditions include
+                HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistosomiasis, hookworm, ringworm, and
+                whipworm. The presence of these diseases, as well as access to essential medicines that treat them
+                varies widely around the world. The Global Health Impact Country Index measures key drugs’ impact on
+                these global health problems in each country and the total Disability Adjusted Life Years (DALYS) saved
+                that would be lost without treatment for these conditions. For additional information, please see <a
+                        class="links" href="/about">About the Index</a> and <a href="/methodology"
+                                                                                            class="links">Methodology.</a>
+            </p>
+        </div>
+    </div>
+    <br>
+    <div class="col-sm-6">
+        <div class="firstPieChart">
+        <p class="bluefontlight">{{year}} | Country <b>Impact</b></p>
+        </div>
+
+        <div id="regions_div"  class="firstPieChart"  style="width:100%;min-width:450px;"></div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div>
+          <p class="bluefontlight">Overall <b>Drug <br> Impact</b> By Country</p>
+        <div id="chart_div" style="width: 100%; height: 350px; overflow-y: auto;overflow-x: hidden;">
+            {% if isall == 0 %}
+            {% for cntry in barlist %}
+            <br>
+            <a class="chartCountry" onclick="countryClick({{loop.index - 1}})" title="{{ cntry.0 }}: {{ cntry.1 }}">
+                <div style="padding-top: 2px; font-family: 'Nunito','sans-serif';">{{ cntry.0 }}</div>
+                <div style="width: {{ cntry.2 }}%;background-color: {{ color }};height: 10px;"></div>
+            </a>
+            {% endfor %}
+            {% endif %}
+            {% if isall == 1 %}
+            {% set count = 0 %}
+            {% for cntry in barlist %}
+            <!-- {{cntry}} -->
+             <a class="chartCountry" onclick="countryclickAll({{cntry.2}})">
+                <div id="" style="font-family: 'avenir next regular', sans-serif;">{{ cntry.0.0 }}</div>
+                <div class="barfloats" style="width: {{ cntry.0.2 }}%;background-color: #FFB31C;"></div>
+                <div class="barfloats" style="width: {{ cntry.0.3 }}%;background-color: #0083CA;"></div>
+                <div class="barfloats" style="width: {{ cntry.0.4 }}%;background-color: #EF3E2E;"></div>
+                <div class="barfloats" style="width: {{ cntry.0.5 }}%;background-color: #003452;"></div>
+                <div class="barfloats" style="width: {{ cntry.0.6 }}%;background-color: #86AAB9;"></div>
+                <div class="barfloats" style="width: {{ cntry.0.7 }}%;background-color: #CAEEFD;"></div>
+                <div class="barfloats" style="width: {{ cntry.0.8 }}%;background-color: #546675;"></div>
+                <div class="barfloats" style="width: {{ cntry.0.9 }}%;background-color: #5CB85C;"></div>
+                <div class="barfloats" style="width: {{ cntry.0.10 }}%;background-color: #305516;"></div>
+            </a>
+            {% endfor %}
+            {% endif %}
+            </div>
+        <div id="pielegend">
+            <table style="margin:auto">
+                <tr style="float:center">
+                    <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#FFB31C;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">TB</td>
+                    <td style="vertical-align: middle;padding-left:15px;"><div class="colorbox" style="background-color:#0083CA;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Malaria</td>
+                    <td style="vertical-align: middle;padding-left:15px"><div class="colorbox" style="background-color:#EF3E2E;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">HIV</td>
+                </tr>
+                <tr style="float:center">
+                    <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#546675;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Schistosomiasis</td>
+                    <td style="vertical-align: middle;padding-left:15px;"><div class="colorbox" style="background-color:#305516;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">LF</td>
+                    <td style="vertical-align: middle;padding-left:15px"><div class="colorbox" style="background-color:#86AAB9;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Hookworm</td>
+                </tr>
+                <tr style="float:center">
+                    <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#003452;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Roundworm</td>
+                    <td style="vertical-align: middle;padding-left:15px;"><div class="colorbox" style="background-color:#CAEEFD;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Whipworm</td>
+                    <td style="vertical-align: middle;padding-left:15px"><div class="colorbox" style="background-color:#5CB85C;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Onchocerciasis</td>
+                </tr>
+            </table>
+        </div><br>
+        </div>
+    </div>
+    <!-- {{ barlist }} -->
+    <div class="col-sm-6">
+        <!--<div class="smallbars" id="smallbars">
+            <p id="smallbartxt">COUNTRY</p>
+            <p class="smallbardisease">TB</p>
+            <div class="smallcolorbar" id="tbbar" style="background-color:#FFB31C;"></div><br>
+            <p class="smallbardisease">Malaria</p>
+            <div class="smallcolorbar" id="malbar" style="background-color:#0083CA;"></div><br>
+            <p class="smallbardisease">HIV/AIDS</p>
+            <div class="smallcolorbar" id="hivbar" style="background-color:#EF3E2E;"></div><br>
+            <p class="smallbardisease">Schistosomiasis</p>
+            <div class="smallcolorbar" id="schisbar" style="background-color:#546675;"></div><br>
+            <p class="smallbardisease">Onchocerciasis</p>
+            <div class="smallcolorbar" id="onchbar" style="background-color:#8A5575;"></div><br>
+            <p class="smallbardisease">LF</p>
+            <div class="smallcolorbar" id="lfbar" style="background-color:#305516;"></div><br>
+            <p class="smallbardisease">Hookworm</p>
+            <div class="smallcolorbar" id="hookbar" style="background-color:#86AAB9;"></div><br>
+            <p class="smallbardisease">Roundworm</p>
+            <div class="smallcolorbar" id="roundbar" style="background-color:#003452;"></div><br>
+            <p class="smallbardisease">Whipworm</p>
+            <div class="smallcolorbar" id="whipbar" style="background-color:#CAEEFD;"></div>
+        </div>-->
+        <p class="blacktxt text-center" id="cntname"></p>
+        <div id="horbars" style="margin:auto 0;"></div>
+        <span class="txtsmallcontent">Disability Adjusted Life <br></span>
+          <span class="txtsmallcontenttwo">Years Saved</span>
+    </div>
+</div>
+{% endblock %}

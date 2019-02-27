@@ -1,0 +1,42 @@
+<div id="" class="" style="padding: 10px 0">
+
+    <table style="margin:auto">
+        <tr style="float:center">
+            <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#588D9A;"></div></td>
+            <td style="vertical-align: middle;" class="legendtxt" id="sub1"></td>
+            <td style="vertical-align: middle;padding-left:25px;"><div class="colorbox" style="background-color:#5CB85C;"></div></td>
+            <td style="vertical-align: middle;" class="legendtxt" id="sub2"></td>
+            <td style="vertical-align: middle;padding-left:25px"><div class="colorbox" style="background-color:#FFB31C;"></div></td>
+            <td style="vertical-align: middle;" class="legendtxt" id="sub3"></td>
+        </tr>
+
+    </table>
+</div>
+<script>
+    var total = {{maxVal}};
+    total = parseInt(total);
+
+    function getNumWithUnit(num){
+        var numLen = num.toString().length;
+        if(numLen > 6){
+            return (num.toString().substring(0,total.toString().length - 6)+"M");
+        }else if(numLen > 3){
+            return (num.toString().substring(0,total.toString().length - 3)+"K");
+        }else{
+            return (num.toString());
+        }
+    }
+
+    var part1 = getNumWithUnit(parseInt(total*0.33));
+    var part2 = getNumWithUnit(parseInt(total*0.66));
+    var part3 = getNumWithUnit(parseInt(total));
+
+    var sub1 = "1 - " + part1;
+    var sub2 = part1 + " - " + part2;
+    var sub3 = part2 + " - " + part3;
+
+    document.getElementById('sub1').innerHTML = sub1;
+    document.getElementById('sub2').innerHTML = sub2;
+    document.getElementById('sub3').innerHTML = sub3;
+
+</script>

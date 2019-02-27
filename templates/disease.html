@@ -1,0 +1,507 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Disease</title>
+<script type="text/javascript" defer src="/static/js/disease.js"></script>
+{% endblock %}
+{% block frontimg %}
+<img id="fore" src="{{ url_for('static',filename='img/disease.jpg') }}" />
+{% endblock%}
+
+{% block content %}
+{% if disease == 0 %}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("upcoming", {packages:['geochart','corechart'], mapsApiKey: 'AIzaSyBbUek5yR_dn5xjXcP-dyvTJ6BpCahdhuE'});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Disease'); // Implicit domain label col.
+            data.addColumn('number', 'Impact'); // Implicit series 1 data col.
+            data.addRows({{ diseasepie |safe }});
+
+        // var bar1 = new google.visualization.DataTable();
+        //     bar1.addColumn('string', 'Disease');
+        //     bar1.addColumn('number','Need');
+        //     bar1.addColumn({type: 'string', role: 'style'});
+        //     bar1.addRows({{ bar1 |safe }});
+
+        var yearsLostBar = new google.visualization.DataTable();
+            yearsLostBar.addColumn('string', 'Disease');
+            yearsLostBar.addColumn('number','Need');
+            yearsLostBar.addColumn({type: 'string', role: 'style'});
+            yearsLostBar.addRows({{ bar1 |safe }});
+
+        // var bar2 = new google.visualization.DataTable();
+        //     bar2.addColumn('string', 'Disease');
+        //     bar2.addColumn('number','Coverage');
+        //     bar2.addColumn({type: 'string', role: 'style'});
+        //     bar2.addRows({{ bar2 |safe }});
+
+        var treatmentCoverageBar = new google.visualization.DataTable();
+            treatmentCoverageBar.addColumn('string', 'Disease');
+            treatmentCoverageBar.addColumn('number','Coverage');
+            treatmentCoverageBar.addColumn({type: 'string', role: 'style'});
+            treatmentCoverageBar.addRows({{ bar2 |safe }});
+
+        var bar3 = new google.visualization.DataTable();
+            bar3.addColumn('string', 'Disease');
+            bar3.addColumn('number','Efficacy');
+            bar3.addColumn({type: 'string', role: 'style'});
+            bar3.addRows({{ bar3 |safe }});
+
+        var options = {
+            width: 400,
+            height: "auto",
+            chartArea:{top:0},
+            legend:'none',
+            colors: ['#FFB31C','#FFB31C','#FFB31C','#0083CA','#0083CA','#EF3E2E','#003452','#86AAB9','#CAEEFD','#546675','#8A5575','#305516'],
+        };
+        var optionsbar = {
+            height: 400,
+            width: 300,
+            top: 0,
+            legend:'none',
+            hAxis: {showTextEvery: 1, slantedText: false, slantedTextAngle: 45},
+            chartArea:{top:5,width:"300px",height:"400px"},
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('diseasepie'));
+        var vertbar1 = new google.visualization.ColumnChart(document.getElementById('verticalbar1'));
+        var vertbar2 = new google.visualization.ColumnChart(document.getElementById('verticalbar2'));
+        var vertbar3 = new google.visualization.ColumnChart(document.getElementById('verticalbar3'));
+
+        chart.draw(data, options);
+        // vertbar1.draw(bar1, optionsbar);
+        // vertbar2.draw(bar2, optionsbar);
+        vertbar1.draw(yearsLostBar, optionsbar);
+        vertbar2.draw(treatmentCoverageBar, optionsbar);
+        vertbar3.draw(bar3, optionsbar);
+      };
+    </script>
+<div class="currentlocation">
+<p class="pagetitle">Index / <a href="/index/disease" class="pagetitle">Disease</a> / <a href="/index/disease/{{ speclocate.0 }}/summary" class="pagetitle">{{ speclocate.0 }}</a> / <a href="/index/drug/{{ speclocate.0 }}/summary" class="titlebold">Summary</a></p>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="titlecolorredlower">DISEASE: <span class="titlecolorred">SUMMARY</span></p>
+            <p class="txtcontent">The map you see displays the aggregate need for treatment for all diseases combined. These diseases include HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistosomiasis, hookworm, ringworm, and whipworm. By clicking on a country on the map, you can view its specific need for treatment for these diseases. Different drugs and combinations of drugs are having different degrees of success in combating these different diseases. The first graph illustrates the impact of key drugs on each of these diseases. Subsequent graphs illustrate the need for, access to, and effectiveness of these drugs. For additional information, please see the About the <b><a href="/index/disease">Index</a> </b>and <b><a href="/methodology">Methodology.</a></b></p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+        <p class="bluefontlight text-center">Aggregated Impact Score</p>
+        <div class="piewrap">
+        <div class="dispie" id="diseasepie"></div>
+        </div>
+        <div id="pielegend">
+
+        <!--style="overflow:auto">-->
+            <table style="margin:auto">
+                <tr style="float:center">
+                    <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#FFB31C;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">TB</td>
+                    <td style="vertical-align: middle;padding-left:15px;"><div class="colorbox" style="background-color:#0083CA;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Malaria</td>
+                    <td style="vertical-align: middle;padding-left:15px"><div class="colorbox" style="background-color:#EF3E2E;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">HIV</td>
+                </tr>
+                <tr style="float:center">
+                    <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#546675;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Schistosomiasis</td>
+                    <td style="vertical-align: middle;padding-left:15px;"><div class="colorbox" style="background-color:#305516;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">LF</td>
+                    <td style="vertical-align: middle;padding-left:15px"><div class="colorbox" style="background-color:#86AAB9;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Hookworm</td>
+                </tr>
+                <tr style="float:center">
+                    <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#003452;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Roundworm</td>
+                    <td style="vertical-align: middle;padding-left:15px;"><div class="colorbox" style="background-color:#CAEEFD;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Whipworm</td>
+                    <td style="vertical-align: middle;padding-left:15px"><div class="colorbox" style="background-color:#5CB85C;"></div></td>
+                    <td style="vertical-align: middle;"class="legendtxt">Onchocerciasis</td>
+                </tr>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="contentbox">
+        <p class="bluefontlight text-center">Disability Adjusted <br>Life Years Lost</p>
+        <div class="verticalbar" id="verticalbar1"></div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="contentbox">
+        <p class="bluefontlight text-center">Treatment Coverage</p>
+        <div class="verticalbar" id="verticalbar2"></div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="contentbox">
+        <p class="bluefontlight text-center">Efficacy or <br> Effectiveness</p>
+        <div class="verticalbar" id="verticalbar3"></div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if disease == 1 %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        console.log({{maxTotal}});
+      google.charts.load("upcoming", {packages:['geochart','corechart']});
+      google.charts.setOnLoadCallback(drawMap);
+      function drawMap() {
+        var data = google.visualization.arrayToDataTable({{ piedat |safe }});
+        var mapoptions = {
+        };
+        mapoptions['dataMode'] = 'regions';
+        mapoptions['colors'] = ['#548A9B', '#C0E188', '#EE8D7D'];
+        mapoptions['width'] = 450;
+        mapoptions['backgroundColor'] = '#ffffff';
+        var mapcontainer = document.getElementById('mapdiv');
+        var geomap = new google.visualization.GeoChart(mapcontainer);
+        drawcharts(0);
+
+        geomap.draw(data, mapoptions);
+        google.visualization.events.addListener(geomap, 'select', selectHandler);
+        function selectHandler() {
+            var selection = geomap.getSelection();
+            var diseases = ['TB','Malaria','HIV','Roundworm','Hookworm','Whipworm','Schistosomiasis','Onchocerciasis','LF'];
+            var rownum = selection[0].row;
+            drawcharts(rownum);
+
+        };
+      };
+      function drawcharts(rownum) {
+        var clickdata = {{ clickdat |safe }};
+        var specdaly = clickdata[rownum];
+        //document.getElementById('cntryname').innerHTML = specdaly[0];
+        var index = {{ index }};
+        var rank = index[rownum] + 1;
+        document.getElementById('rank').innerHTML = rank;
+        var score = specdaly[1]+specdaly[2]+specdaly[3]+specdaly[4]+specdaly[5]+specdaly[6]+specdaly[7]+specdaly[8]+specdaly[9]
+        score = score.toFixed(2);
+        document.getElementById('score').innerHTML = score;
+        var baroptions = {
+            height: 400,
+            width: 300,
+            top: 0,
+            legend:'none',
+            chartArea:{top:5,width:"300px",height:"400px"},
+            colors: ['#FFB31C','#FFB31C','#FFB31C','#0083CA','#0083CA','#EF3E2E','#003452','#86AAB9','#CAEEFD','#546675','#8A5575','#305516'],
+            animation:{
+                startup: true,
+                duration: 1000,
+                easing: 'out',
+            },
+            hAxis: {showTextEvery: 1, slantedText: false, slantedTextAngle: 45},
+        };
+        var options = {
+            chartArea:{top:0},
+            legend:'none',
+            colors: ['#FFB31C','#0083CA','#EF3E2E','#003452','#86AAB9','#CAEEFD','#546675','#8A5575','#305516'],
+            animation:{
+                startup: true,
+                duration: 1000,
+                easing: 'out',
+            },
+        };
+        var barx = [['Disease','DALY'],['TB',specdaly[1]],['Malaria',specdaly[2]],['HIV',specdaly[3]],['Roundworm',specdaly[4]],['Hookworm',specdaly[5]],['Whipworm',specdaly[6]],['Schistosomiasis',specdaly[7]],['Onchocerciasis',specdaly[8]],['LF',specdaly[9]]];
+        var bararray = new google.visualization.DataTable();
+            bararray.addColumn('string', 'Disease');
+            bararray.addColumn('number','DALY');
+            bararray.addColumn({type: 'string', role: 'style'});
+            bararray.addRows([['TB',specdaly[1],'color: #FFB31C'],['Malaria',specdaly[2],'color: #0083CA'],['HIV',specdaly[3],'color: #EF3E2E'],['Roundworm',specdaly[4],'color: #003452'],['Hookworm',specdaly[5],'color: #86AAB9'],['Whipworm',specdaly[6],'color: #CAEEFD'],['Schistosomiasis',specdaly[7],'color: #546675'],['Onchocerciasis',specdaly[8],'color: #8A5575'],['LF',specdaly[9],'color: #305516']]);
+        var bardata = google.visualization.arrayToDataTable(barx);
+        var vertbar = new google.visualization.ColumnChart(document.getElementById('vertbars'));
+        var piechrt = new google.visualization.PieChart(document.getElementById('piediv'));
+        vertbar.draw(bararray,baroptions);
+        piechrt.draw(bardata,options);
+      };
+    </script>
+<div class="currentlocation">
+<p class="pagetitle">Index / <a href="/index/disease" class="pagetitle">Disease</a> / <a href="/index/disease/{{ speclocate.0 }}/all" class="pagetitle">{{ speclocate.0 }}</a> / <a href="/index/disease/{{ speclocate.0 }}/all" class="titlebold">all</a></p>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="titlecolorredlower">DISEASE: <span class="titlecolorred">ALL</span></p>
+            <p class="txtcontent">The map you see displays the aggregate need for treatment of diseases for all diseases combined. These diseases include HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistomiasis, hookworm, ringworm, and whipworm. By clicking on a country on the map, you can view its specific need for treatment and the proportion of the disease burden due to each of these individual diseases in that country.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+
+        <p class="bluefontlight">Disability Adjusted Life Years <br> <b>Lost</b> to By Disease</p>
+        <div width="400px" id="mapdiv"></div>
+        {% with maxVal=maxTotal %}
+        {% include "map-label.html"  %}
+        {% endwith %}
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="bluefontlight">Disability Adjusted Life Years <br> <b>Lost</b> to By Disease<br>
+                <span id="cntryname"></span>
+            </p>
+             <p class="smblue"><b>Overall Dalys :</b> <span class="smblack" id="score"></span> <b> Rank: </b><span class="smblack" id="rank"></span></p>
+            <div id="vertbars"></div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <div class="piewrap">
+            <div id="piediv" class="dispie"></div></div>
+            <div id="pielegend" style="overflow:auto">
+                <table style="margin:auto">
+                    <tr style="float:center">
+                        <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#FFB31C;"></div></td>
+                        <td style="vertical-align: middle;"class="legendtxt">TB</td>
+                        <td style="vertical-align: middle;padding-left:15px;"><div class="colorbox" style="background-color:#0083CA;"></div></td>
+                        <td style="vertical-align: middle;"class="legendtxt">Malaria</td>
+                        <td style="vertical-align: middle;padding-left:15px"><div class="colorbox" style="background-color:#EF3E2E;"></div></td>
+                        <td style="vertical-align: middle;"class="legendtxt">HIV</td>
+                    </tr>
+                    <tr style="float:center">
+                        <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#546675;"></div></td>
+                        <td style="vertical-align: middle;"class="legendtxt">Schistosomiasis</td>
+                        <td style="vertical-align: middle;padding-left:15px;"><div class="colorbox" style="background-color:#305516;"></div></td>
+                        <td style="vertical-align: middle;"class="legendtxt">LF</td>
+                        <td style="vertical-align: middle;padding-left:15px"><div class="colorbox" style="background-color:#86AAB9;"></div></td>
+                        <td style="vertical-align: middle;"class="legendtxt">Hookworm</td>
+                    </tr>
+                    <tr style="float:center">
+                        <td style="vertical-align: middle;"><div class="colorbox" style="background-color:#003452;"></div></td>
+                        <td style="vertical-align: middle;"class="legendtxt">Roundworm</td>
+                        <td style="vertical-align: middle;padding-left:15px;"><div class="colorbox" style="background-color:#CAEEFD;"></div></td>
+                        <td style="vertical-align: middle;"class="legendtxt">Whipworm</td>
+                        <td style="vertical-align: middle;padding-left:15px"><div class="colorbox" style="background-color:#5CB85C;"></div></td>
+                        <td style="vertical-align: middle;"class="legendtxt">Onchocerciasis</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if disease == 2 %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        console.log({{maxTotal}});
+      google.charts.load("upcoming", {packages:['geochart','corechart']});
+      google.charts.setOnLoadCallback(drawMap);
+      function drawMap() {
+        var data = google.visualization.arrayToDataTable({{ piedat |safe }});
+        var mapoptions = {
+        };
+        mapoptions['dataMode'] = 'regions';
+        mapoptions['colors'] = ['#548A9B', '#C0E188', '#EE8D7D'];
+        mapoptions['width'] = 450;
+        mapoptions['backgroundColor'] = '#ffffff';
+        var mapcontainer = document.getElementById('mapdiv');
+        var geomap = new google.visualization.GeoChart(mapcontainer);
+        drawcharts(0);
+
+        geomap.draw(data, mapoptions);
+        google.visualization.events.addListener(geomap, 'select', selectHandler);
+        function selectHandler() {
+            var selection = geomap.getSelection();
+            var diseases = ['TB'];
+            var rownum = selection[0].row;
+            drawcharts(rownum);
+
+        };
+      };
+      google.charts.load("upcoming", {packages:['geochart','corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawcharts(rownum) {
+
+
+        var bar1 = new google.visualization.DataTable();
+            bar1.addColumn('string', 'Disease');
+            bar1.addColumn('number','Need');
+            bar1.addColumn({type: 'string', role: 'style'});
+            bar1.addRows({{ bar1 |safe }});
+
+        var bar2 = new google.visualization.DataTable();
+            bar2.addColumn('string', 'Disease');
+            bar2.addColumn('number','Coverage');
+            bar2.addColumn({type: 'string', role: 'style'});
+            bar2.addRows({{ bar2 |safe }});
+
+        var options = {
+            width: 600,
+            height: "auto",
+            chartArea:{top:0},
+            legend:'none',
+            colors: ['#FFB31C','#FFB31C','#FFB31C','#0083CA','#0083CA','#EF3E2E','#003452','#86AAB9','#CAEEFD','#546675','#8A5575','#305516'],
+        };
+        var optionsbar = {
+            height: 400,
+            width: 450,
+            top: 0,
+            legend:'none',
+            // hAxis: {showTextEvery: 1, title: "Drug", slantedText: true, slantedTextAngle: 45},
+            chartArea:{top:5,width:"450px",height:"400px"},
+
+
+            vAxis: {
+                showTextEvery: 1,
+                title: "Percentage",
+                slantedText:true,
+                slantedTextAngle:45
+            },
+            hAxis: {
+                showTextEvery: 1,
+                title: "Drug",
+                slantedText:true,
+                slantedTextAngle:45
+            }
+        };
+        var vertbar1 = new google.visualization.ColumnChart(document.getElementById('verticalbar1'));
+        var vertbar2 = new google.visualization.ColumnChart(document.getElementById('verticalbar2'));
+
+        vertbar1.draw(bar1, optionsbar);
+        vertbar2.draw(bar2, optionsbar);
+      };
+    </script>
+<div class="currentlocation">
+<p class="pagetitle">Index / <a href="/index/disease" class="pagetitle">Disease</a> / <a href="/index/disease/{{ speclocate.0 }}/{{ speclocate.1 }}" class="pagetitle">{{ speclocate.0 }}</a> / <a href="/index/drug/{{ speclocate.0 }}/{{ speclocate.1 }}" class="titlebold">{{ speclocate.2 }}</a></p>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <!--<p class="titlecolorredlower">DISEASE: <span class="titlecolorred" style="text-transform:uppercase;">{{ speclocate.2 }}</span></p>-->
+            <p class="bluefontlight text-left">Treatment<b> Coverage</b> <br />by <span class="capitalize-first-letter">{{ speclocate.2 }}</span> Type: </p>
+            <p class="txtcontent">The map you see displays the aggregate need for treatment of diseases for all diseases combined. These diseases include HIV/AIDS, TB, malaria, lymphatic filariasis, onchoriasis, schistomiasis, hookworm, ringworm, and whipworm. By clicking on a country on the map, you can view its specific need for treatment and the proportion of the disease burden due to each of these individual diseases in that country.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="firstPieChart">
+            <!--<p class="bluefontlight text-left">Disability Adjusted Life Years<br /><b>Lost</b>  to <b>{{ speclocate.2 }}</b> </p>-->
+            <p class="bluefontlight text-left"><span class="capitalize-first-letter">{{ speclocate.2 }}</span> Treatment <br /><b> Effectiveness </b>by Drug:</p>
+            <div width="400px" id="mapdiv"></div>
+            {% with maxVal=maxTotal %}
+            {% include "map-label.html"  %}
+            {% endwith %}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="bluefontlight text-left">Treatment<b> Coverage</b> <br />by {{ speclocate.2 }} Type: </p>
+            <div class="verticalbar"  id="verticalbar1"></div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+           <p class="bluefontlight text-left">{{ speclocate.2 }} Treatment <br /><b> Effectiveness </b>by Drug:</p>
+            <div class="verticalbar" id="verticalbar2"></div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if disease == 4 %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("upcoming", {packages:['geochart','corechart']});
+      google.charts.setOnLoadCallback(drawMap);
+      function drawMap() {
+        var data = google.visualization.arrayToDataTable({{ piedat |safe }});
+        var mapoptions = {
+        };
+        mapoptions['dataMode'] = 'regions';
+        mapoptions['colors'] = ['#548A9B', '#C0E188', '#EE8D7D'];
+        mapoptions['width'] = 450;
+        mapoptions['backgroundColor'] = '#ffffff';
+        var mapcontainer = document.getElementById('mapdiv');
+        var geomap = new google.visualization.GeoChart(mapcontainer);
+        drawcharts(0);
+
+        geomap.draw(data, mapoptions);
+        google.visualization.events.addListener(geomap, 'select', selectHandler);
+        function selectHandler() {
+            var selection = geomap.getSelection();
+            var diseases = ['HIV'];
+            var rownum = selection[0].row;
+            drawcharts(rownum);
+        };
+      };
+      function drawcharts(rownum) {
+        var clickdata = {{ clickdat |safe }};
+        var specdaly = clickdata[rownum];
+        var baroptions = {
+            height: 400,
+            width: 300,
+            top: 0,
+            legend:'none',
+            chartArea:{top:5,width:"300px",height:"400px"},
+            hAxis: {showTextEvery: 1, slantedText: false, slantedTextAngle: 45},
+        };
+
+
+        var bararray = new google.visualization.DataTable();
+            bararray.addColumn('string', 'Disease');
+            bararray.addColumn('number','DALY');
+            bararray.addColumn({type: 'string', role: 'style'});
+            bararray.addRows([['TB',specdaly[1],'color: #FFB31C'],['Malaria',specdaly[2],'color: #0083CA'],['HIV',specdaly[3],'color: #EF3E2E'],['Roundworm',specdaly[4],'color: #003452'],['Hookworm',specdaly[5],'color: #86AAB9'],['Whipworm',specdaly[6],'color: #CAEEFD'],['Schistosomiasis',specdaly[7],'color: #546675'],['Onchocerciasis',specdaly[8],'color: #8A5575'],['LF',specdaly[9],'color: #305516']]);
+        var bararray2 = new google.visualization.DataTable();
+            bararray2.addColumn('string', 'Disease');
+            bararray2.addColumn('number','DALY');
+            bararray2.addColumn({type: 'string', role: 'style'});
+            bararray2.addRows([['TB',specdaly[1],'color: #FFB31C'],['Malaria',specdaly[2],'color: #0083CA'],['HIV',specdaly[3],'color: #EF3E2E'],['Roundworm',specdaly[4],'color: #003452'],['Hookworm',specdaly[5],'color: #86AAB9'],['Whipworm',specdaly[6],'color: #CAEEFD'],['Schistosomiasis',specdaly[7],'color: #546675'],['Onchocerciasis',specdaly[8],'color: #8A5575'],['LF',specdaly[9],'color: #305516']]);
+
+        var vertbar = new google.visualization.ColumnChart(document.getElementById('vertbars'));
+        var vertbar2 = new google.visualization.ColumnChart(document.getElementById('vertbars2'));
+        vertbar.draw(bararray,baroptions);
+        vertbar2.draw(bararray2,baroptions);
+      };
+    </script>
+<div class="currentlocation">
+<p class="pagetitle">Index / <a href="/index/disease" class="pagetitle">Disease</a> / <a href="/index/disease/{{ speclocate.0 }}/{{ speclocate.1 }}" class="pagetitle">{{ speclocate.0 }}</a> / <a href="/index/drug/{{ speclocate.0 }}/{{ speclocate.1 }}" class="titlebold">{{ speclocate.2 }}</a></p>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="titlecolorredlower">DISEASE: <span class="titlecolorred">HIV/AIDS</span></p>
+            <p class="txtcontent">Every day more than 13,400 people are infected with AIDS. Essential medicines for HIV/AIDS help us reduce the global burden of disease. The map you see displays the aggregate need for treatment for HIV/AIDS. We also provide some graphs of our data on access to medicines for this disease and their efficacy. For additional information, please see the About the <b><a href="/index/disease">Index</a> </b>and <b><a href="/methodology">Methodology.</a></b></p>
+
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div width="400px" id="mapdiv"></div>
+        {% with maxVal="{{maxTotal}}" %}
+        {% include "map-label.html"  %}
+        {% endwith %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="bluefontlight">HIV Treatment Coverage by region</p>
+            <div class="verticalbar" id="vertbars"></div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="bluefontlight">Select First Line Drug Efficacy for Adults</p>
+            <div class="verticalbar" id="vertbars2"></div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

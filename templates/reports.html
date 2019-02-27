@@ -1,0 +1,281 @@
+
+{% extends "layout.html" %}
+{% block title %}
+<style type="text/css">
+
+  .row{
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .coll {
+    padding-left:20px;
+    padding-right:20px;
+  }
+  .companyname a{
+
+    color:black;
+    text-decoration: none;
+}
+
+.companyname a:hover{
+
+    color:red;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#company_head{
+  font-size: 25px;
+  color: #0083c4;
+  font-weight: 700;
+}
+</style>
+<title>Reports</title>
+{% endblock %}
+
+{% block frontimg %}
+<img id="fore" src="static/img/about.jpg"/>
+{% endblock %}
+
+{% block content %}
+<div class="currentlocation">
+<p class="pagetitle">About / <a href="/reports" class="titlebold">Reports</a></p>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+            <p class="redtxt"  style="font-size:42px;font-weight:bold">REPORTS</p>
+        </div>
+         <div class="contentbox">
+            <p class="redtxt"  style="font-size:30px;font-weight:bold">PICK A COMPANY</p>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    var colorval;
+
+
+    function getColor(colorvalue)
+    {
+      if(colorvalue.includes("Malaria"))
+      {
+        colorval = "#0083CA";
+      }
+      else if(colorvalue.includes("TB"))
+      {
+        colorval = "#FFB31C";
+      }
+      else if(colorvalue.includes("HIV"))
+      {
+        colorval = "#EF3E2E";
+      }
+      else if(colorvalue.includes("Roundworm"))
+      {
+        colorval = "#003452";
+      }
+      else if(colorvalue.includes("Hookworm"))
+      {
+        colorval = "#86AAB9";
+      }
+      else if(colorvalue.includes("Whipworm"))
+      {
+        colorval = "#CAEEFD";
+      }
+      else if(colorvalue.includes("Schistosomiasis"))
+      {
+        colorval = "#546675";
+      }
+      else
+      {
+        colorval = "#5CB85C";
+      }
+    }
+
+    var reportsdata = {{report2010 | safe}}
+
+    var reportdetail = {{reportdetail2010 | safe }}
+
+    google.charts.load('upcoming', {'packages':['geochart','corechart']});
+    google.charts.setOnLoadCallback(drawMap);
+    function drawMap() {
+      row = reportdetail[0];
+      rowvalue = reportsdata[0];
+      getColor(row[4]);
+      var bardata = new google.visualization.DataTable();
+      bardata.addColumn('string','Disease');
+      bardata.addColumn('number','Impact');
+      bardata.addColumn({type: 'string', role: 'style'});
+      bardata.addRow([row[4],row[5],"color: colorval"]);
+       var baroptions = {
+             legend:'none',
+             top: 0,
+             width: 400,
+             left: 200,
+             animation:{
+                 startup: true,
+                 duration: 1000,
+                 easing: 'out',
+             }
+         };
+      var barchart = new google.visualization.BarChart(document.getElementById('horbars'));
+      barchart.draw(bardata,baroptions);
+      var content_data = row[2]+" is ranked in "+row[4]+" place in our index."+row[2]+"’s drugs have a total impact score of "+row[3]+". Of that score, <<disease1percent>>%, or <<disease1impact>>, comes from treating <<disease1>> and <<disease2percent>>%, or <<disease2impact>>, comes from treating <<disease2>>."+row[2]+" receives credit for <<numberofdrugsdisease1>> treatments against <<disease1>>, <<drug1disease1>> and <<drug2disease1>> [etc. if more than one exist]. These <<numberofdrugsdisease1>> <<disease1>> drugs are responsible for averting the loss of <<percentdalyscompanydisease1>> of the worldwide DALYs that we estimate would have been lost due to <<disease1>> in <<year>> in the absence of effective treatment [similarly for other diseases]. "+row[2]+"’s drug portfolio placed it <<companyrankdisease1>> in terms of total averted DALYs for <<disease1>>."+row[2]+" also receives credit for <<numberofdrugsdisease2>> <<disease2>> drugs, <<drug1disease2>> and <<drug2disease2>>. "+row[2]+"’s <<disease2>> drug portfolio helped to prevent <<percentdalyscompanydisease2>> of the DALYs that we estimate would have been lost to <<disease2>> in <<year>>. "+row[2]+"’s drug portfolio placed it <<companyrankdisease2>> in terms of total averted DALYs for <<disease2>>.<<drughighestscore>> for <<diseasehighestscore>> contributes the most to <<company>>’s score. Drug <<drughighestefficacy> has the <<rankefficacy>> greatest efficacy, <<ranktreatmentpercentage>> greatest treatment percentage and disease <<disease1>> accounts for <<percentofdesiseseburden>> percent of the global burden of disease that we estimate would be lost without treatment (out of all the diseases in our model).";
+
+        document.getElementById('company_head').innerHTML = row[2];
+            document.getElementById('cont').innerHTML = content_data;
+      document.getElementById('rptScore').innerHTML = rowvalue[3];
+      document.getElementById('rptDrug').innerHTML = row[3];
+      document.getElementById('rptDisease').innerHTML = row[4];
+      document.getElementById(row[0]).style.color = "#0083c4";
+      document.getElementById(row[0]).style.fontWeight = "700"
+      console.log(rowvalue[2]);
+      //document.getElementById('cntname').innerHTML = rowvalue[2];
+    }
+
+    function rptClick(rownum){
+          document.getElementById('rptDrug').innerHTML = "";
+          document.getElementById('rptDisease').innerHTML = "";
+           // alert("Inside"+ rownum);
+            var ii = 0;
+            var j;
+             var count = Object.keys(reportdetail).length;
+             console.log(count);
+             var bardata = new google.visualization.DataTable();
+             bardata.addColumn('string','Disease');
+             bardata.addColumn('number','Impact');
+             bardata.addColumn({type: 'string', role: 'style'});
+             console.log("-----------------------------------------");
+             for(ii = 0; ii < count; ii++)
+             {
+                    console.log(reportdetail[ii][0])
+                    if(rownum == reportdetail[ii][0])
+                    {
+                    row = reportdetail[ii];
+                    rowvalue = reportsdata[rownum-1];
+                    console.log("This is the Drug : "+row[3]);
+                    console.log("This is the disease : "+row[4]);
+                    console.log("This is the impact score : "+row[5]);
+                    getColor(row[4]);
+                     bardata.addRow([row[4],row[5],colorval]);
+                    document.getElementById('rptDrug').innerHTML += " " + row[3];
+                    document.getElementById('rptDisease').innerHTML += " " + row[4];
+                    document.getElementById(reportdetail[ii][0]).style.color = "#0083c4";
+                    document.getElementById(reportdetail[ii][0]).style.fontWeight = "700"
+                    }
+                    else
+                    {
+                      document.getElementById(reportdetail[ii][0]).style.color = "#000000";
+                      document.getElementById(reportdetail[ii][0]).style.fontWeight = "400"
+                    }
+             }
+             console.log("-----------------------------------------");
+               var baroptions = {
+                    legend:'none',
+                    top: 0,
+                    width: 400,
+                    animation:{
+                        startup: true,
+                        duration: 1000,
+                        easing: 'out',
+                    }
+                };
+            var barchart = new google.visualization.BarChart(document.getElementById('horbars'));
+            barchart.draw(bardata,baroptions);
+            var content_data = row[2]+" is ranked in "+row[4]+" place in our index."+row[2]+"’s drugs have a total impact score of "+row[3]+". Of that score, <<disease1percent>>%, or <<disease1impact>>, comes from treating <<disease1>> and <<disease2percent>>%, or <<disease2impact>>, comes from treating <<disease2>>."+row[2]+" receives credit for <<numberofdrugsdisease1>> treatments against <<disease1>>, <<drug1disease1>> and <<drug2disease1>> [etc. if more than one exist]. These <<numberofdrugsdisease1>> <<disease1>> drugs are responsible for averting the loss of <<percentdalyscompanydisease1>> of the worldwide DALYs that we estimate would have been lost due to <<disease1>> in <<year>> in the absence of effective treatment [similarly for other diseases]. "+row[2]+"’s drug portfolio placed it <<companyrankdisease1>> in terms of total averted DALYs for <<disease1>>."+row[2]+" also receives credit for <<numberofdrugsdisease2>> <<disease2>> drugs, <<drug1disease2>> and <<drug2disease2>>. "+row[2]+"’s <<disease2>> drug portfolio helped to prevent <<percentdalyscompanydisease2>> of the DALYs that we estimate would have been lost to <<disease2>> in <<year>>. "+row[2]+"’s drug portfolio placed it <<companyrankdisease2>> in terms of total averted DALYs for <<disease2>>.<<drughighestscore>> for <<diseasehighestscore>> contributes the most to <<company>>’s score. Drug <<drughighestefficacy> has the <<rankefficacy>> greatest efficacy, <<ranktreatmentpercentage>> greatest treatment percentage and disease <<disease1>> accounts for <<percentofdesiseseburden>> percent of the global burden of disease that we estimate would be lost without treatment (out of all the diseases in our model).";
+
+            document.getElementById('company_head').innerHTML = row[2];
+            document.getElementById('cont').innerHTML = content_data;
+            document.getElementById('rptScore').innerHTML = rowvalue[3];
+            //document.getElementById('cntname').innerHTML = rowvalue[2];
+
+        };
+</script>
+
+
+<div class="row">
+<!-- List of companies -->
+  <div  class="col-sm-6">
+    {% for rpt in report2010 %}
+    <div class="coll companyname" style="padding-top: 1px; font-family: 'Nunito','sans-serif';" >
+      <a id="{{rpt.0}}" onclick="rptClick({{rpt.0}})">
+        {{ rpt[2] }}
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+<!--End list of company-->
+<!--Company details with bar graph and paragraph-->
+  <div class="col-sm-6">
+  <!--Company Name-->
+    <div class="coll" id="company_head"> </div>
+  <!--End Company Name-->
+    </br>
+
+  <!--Paragraph about company -->
+    <div class="coll" id="cont"></div>
+  <!--End Paragraph about company-->
+
+  <!--Score details -->
+  <div class="coll">
+        <div style="width:250px;">
+         <div style="width:50px; float:left;"><b> Score :</b> </div>
+         <div style="width:200px; float:right;" id="rptScore"></div>
+        </div><br>
+         <div  style="width:250px;">
+         <div style="width:50px; float:left;"><b> Drug :</b> </div>
+         <div style="width:200px; float:right;" id="rptDrug"></div>
+        </div><br>
+         <div  style="width:270px;">
+         <div style="width:70px; float:left;"><b> Disease : </b> </div>
+         <div style="width:200px; float:right;" id="rptDisease"></div>
+        </div>
+  </div>
+  <!--End score details-->
+
+
+    </br></br>
+    <!-- Bar Graph -->
+         <div class="rgtpos" id="horbars" ></div>
+    <!-- End bar graph -->
+
+</div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+ <div class="contentbox">
+            <p class="redtxt">SCORE EXPLANATION REPORT:</p>
+             <p class="txtcontent">Learn more about the companies and drugs. It also explains the score break-down for each company.</p>
+             <table id="reporttab">
+                <tr>
+                    <td id="paperthumb">
+                        <a href="http://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0141374&type=printable">
+                            <img src="static/img/ExtendingAccessThumb.jpg" width="100%"/>
+                        </a>
+                    </td>
+                    <td>
+                        <p class="abtlabel">Click on the paper to read more!</p>
+                    </td>
+                </tr>
+            </table>
+      <table id="reporttab">
+                <tr>
+                    <td id="paperthumb">
+                        <a href="http://global-health-impact.org/src/Company%20Ranking%20Only%20011615.pdf">
+                            <img src="static/img/ghi_ranking_explanation.jpg" width="100%"/>
+                        </a>
+                    </td>
+                    <td>
+                        <p class="abtlabel">Click on the paper to read more!</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

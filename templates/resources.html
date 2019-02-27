@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block title %}
+<title>Resources</title>
+{% endblock %}
+
+{% block frontimg %}
+<img id="fore" src="static/img/about.jpg"/>
+{% endblock %}
+
+{% block content %}
+<div class="currentlocation">
+<p class="pagetitle">About / <a href="/resources" class="titlebold">Resources</a></p>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+            <div class="contentbox">
+            <p class="titlecolorred">RESOURCES</p>
+            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="contentbox">
+         <p class="redtxtabout">Introduction to The Company Index</p>
+            <p class="txtcontent">A slide show for an introduction to the Company Index.</p>
+            <iframe id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" width=100% height=222px src="https://prezi.com/embed/r9kwud5nhsj8/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;landing_data=bHVZZmNaNDBIWnNjdEVENDRhZDFNZGNIUE1lNjhCRUpSbVVNaldpOExIVTNYS1YxcHFaaHFGQ1lSdkdOM01xRUZFOD0&amp;landing_sign=t_-zvhLxW_pfDKaw-xoUzy64VD0DwVqSteTWZ3Jtak8"></iframe>
+        </div>
+        <div class="contentbox">
+        <p class="redtxtabout">Global Justice and Global Health</p>
+            <p class="txtcontent">An interview on New Books in Philosophy that discusses the Global Health Impact Proposal.</p>
+            <br>
+            <audio controls>
+            <!--<source src="horse.ogg" type="audio/ogg">-->
+            <source src="static/docs/030philosophyhassoun.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+         <div class="contentbox">
+            <p class="redtxtabout">Podcast from Santa Clara University</p>
+            <p class="txtcontent">A podcast from a lecture on the Global Health Impact Index at Santa Clara University.</p>
+            <br>
+            <audio controls>
+            <!--<source src="horse.ogg" type="audio/ogg">-->
+            <source src="static/docs/Ethics-at-noon-Nicole-hassoun.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div class="contentbox">
+            <p class="redtxtabout">Presentation at Harvard University</p>
+            <p class="txtcontent">Check out this video with a presentation on the Global Health Impact Index from a recent conference at Harvard University.</p>
+            <iframe width="100%" height="222" src="//www.youtube.com/embed/-PMWWBg6XkQ?rel=0" frameborder="0" allowfullscreen=""></iframe>
+        </div>
+
+    </div>
+    <div class="col-sm-6">
+        <div class="contentbox contentresource">
+            <p class="bluetxtabout">The Policy Proposal</p>
+            <div class="reportpic"><a href="{{ url_for('static',filename='docs/Policy_Proposal.pdf') }}" target="_blank"><img src="static/img/companyreport.jpg" width="100%"/></a></div>
+            <p class="txtcontent">This paper explains how to leverage the Index to promote global health.</p>
+        </div>
+        <br>
+         <div class="contentbox contentresource">
+            <p class="bluetxtabout">Global Health Impact Index</p>
+            <div class="reportpic"><a href="{{ url_for('static',filename='docs/Policy_Proposal.pdf') }}" target="_blank"><img src="static/img/companyreport.jpg" width="100%"/></a></div>
+            <p class="txtcontent">This report explains in detail how the Company Index is calculated. In doing so, it gives examples of how drug scores are calculated.</p>
+        </div>
+        <br>
+        <div class="contentbox contentresource">
+            <p class="bluetxtabout">Global Health Impact Country Index</p>
+            <div class="reportpic"><a href="{{ url_for('static',filename='docs/Policy_Proposal.pdf') }}" target="_blank"><img src="static/img/companyreport.jpg" width="100%"/></a></div>
+            <p class="txtcontent">This paper provides a brief introduction to the Global Health Impact country index. You can learn how the index is constructed and see and example of how a company's score is calculated for one drug.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
